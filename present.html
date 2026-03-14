@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Special Surprise</title>
+
+<style>
+
+/* BODY */
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+font-family:Comic Sans MS, cursive;
+background:black;
+color:white;
+overflow:hidden;
+}
+
+/* SPARKLING STARS BACKGROUND */
+body::before{
+content:"";
+position:absolute;
+width:200%;
+height:200%;
+background-image:
+radial-gradient(white 1px, transparent 1px),
+radial-gradient(#ff69b4 1px, transparent 1px),
+radial-gradient(#fff 2px, transparent 2px);
+background-size:40px 40px,80px 80px,120px 120px;
+animation:starsMove 80s linear infinite;
+opacity:0.9;
+}
+
+@keyframes starsMove{
+from{transform:translateY(0);}
+to{transform:translateY(-1000px);}
+}
+
+/* CONTAINER */
+.container{
+position:relative;
+z-index:10;
+animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0);}
+}
+
+/* QUESTION */
+h1{
+font-size:42px;
+margin-bottom:40px;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{text-shadow:0 0 10px #fff;}
+to{text-shadow:0 0 25px #ff69b4;}
+}
+
+/* BUTTONS */
+button{
+padding:15px 35px;
+font-size:22px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+margin:15px;
+transition:0.3s;
+}
+
+/* YES BUTTON */
+#yes{
+background:#ff1493;
+color:white;
+animation:yesPulse 2s infinite;
+}
+
+@keyframes yesPulse{
+0%{box-shadow:0 0 10px #ff1493;}
+50%{box-shadow:0 0 30px #ff69b4;}
+100%{box-shadow:0 0 10px #ff1493;}
+}
+
+/* NO BUTTON */
+#no{
+background:#ccc;
+}
+
+/* FINAL MESSAGE */
+#message{
+display:none;
+font-size:70px;
+color:#ff69b4;
+animation:pop 1s ease forwards, sparkle 2s infinite;
+}
+
+@keyframes pop{
+0%{transform:scale(0);opacity:0;}
+60%{transform:scale(1.3);}
+100%{transform:scale(1);opacity:1;}
+}
+
+@keyframes sparkle{
+0%{text-shadow:0 0 10px #fff;}
+50%{text-shadow:0 0 40px #ff69b4;}
+100%{text-shadow:0 0 10px #fff;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Do you want to see your surprise? 😏</h1>
+
+<button id="yes" onclick="showMessage()">YES 😍</button>
+<button id="no" onclick="noClicked()">NO 🙄</button>
+
+<div id="message">
+MISS CA 🎁<br>
+Your Present Is Coming Soon ✨
+</div>
+
+</div>
+
+<script>
+
+let yesSize = 1;
+
+function noClicked(){
+
+let yesBtn = document.getElementById("yes");
+
+yesSize += 0.3;
+yesBtn.style.transform = "scale(" + yesSize + ")";
+
+}
+
+/* when YES clicked */
+
+function showMessage(){
+
+document.querySelector("h1").style.display="none";
+document.getElementById("yes").style.display="none";
+document.getElementById("no").style.display="none";
+
+document.getElementById("message").style.display="block";
+
+}
+
+</script>
+
+</body>
+</html>
